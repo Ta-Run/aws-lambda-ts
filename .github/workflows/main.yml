@@ -21,8 +21,7 @@ jobs:
 
       - name: Build and zip
         run: |
-          npx ncc build index.ts
-          zip -r deploy.zip ./dist/*
+          zip -r deploy.zip ./*
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
