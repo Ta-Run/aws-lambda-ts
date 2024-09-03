@@ -21,10 +21,10 @@ jobs:
 
       - name: Build and zip
         run: |
-          npx ncc build index.js # Ensure you're pointing to the correct entry file
+          npx ncc build index.ts # Ensure you're pointing to the correct entry file
           zip -r deploy.zip ./dist/*
 
       
       - name: Deploy to AWS Lambda
         run: |
-          aws lambda update-function-code --function-name your_lambda_function --zip-file fileb://deploy.zip
+          aws lambda update-function-code --function-name shoppingProducts --zip-file fileb://deploy.zip
