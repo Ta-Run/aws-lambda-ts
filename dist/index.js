@@ -37,10 +37,8 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-// import * as _ from 'lodash'
 const handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
     const max = 10;
-    // const val = _.random(max);
     const response = {
         statusCode: 200,
         body: `The random value is ${max}` // Adjusted the message to be more meaningful
