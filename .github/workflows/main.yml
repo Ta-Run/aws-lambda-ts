@@ -33,4 +33,4 @@ jobs:
 
       - name: Deploy to AWS Lambda
         run: |
-          aws lambda update-function-code --function-name shoppingProducts --zip-file fileb://deploy.zip  --us-east-1
+          aws lambda update-function-code --function-name shoppingProducts --zip-file fileb://deploy.zip
