@@ -1,0 +1,25 @@
+{
+  "name": "lamdats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.23.1",
+    "esbuild-register": "^3.6.0",
+    "loadash": "^1.0.0",
+    "tsc-init": "^2.1.0",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/lodash": "^4.17.7",
+    "@types/node": "^22.5.2",
+    "@vercel/ncc": "^0.38.1"
+  }
+}

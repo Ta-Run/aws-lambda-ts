@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy_lambda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: npm install
+        env:
+          CI: true
+        run: |
+          npm ci
+     
+      - name: Build and zip
+        env:
+          CI: true
+        run: |
+          npx ncc build index.ts
+          Compress-Archive -Path .\dist\* -DestinationPath deploy.zip
+      # Add AWS CLI commands here to deploy the code
+      # - name: Deploy to AWS Lambda
+      #   run: |
+          # aws lambda update-function-code --function-name your_lambda_function --zip-file fileb://deploy.zip
