@@ -1,6 +1,15 @@
 {
-    "compilerOptions": {
-      "target": "es2015",
-      "moduleResolution": "node"
-    }
-  }
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "esnext",
+    "target": "es2020",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true
+  },
+  "include": ["*.ts"],
+  "exclude": ["node_modules"]
+}

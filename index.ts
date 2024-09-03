@@ -1,11 +1,12 @@
-import { APIGatewayProxyEventV2, Handler, APIGatewayProxyResultV2 } from 'aws-lambda';
+import express from 'express';
+import serverless from 'serverless-http';
 
-export const handler: Handler<APIGatewayProxyEventV2, APIGatewayProxyResultV2> = async (event): Promise<APIGatewayProxyResultV2> => {
-    const max = 10;
-    const response = {
-        statusCode: 200,
-        body: `The random value is ${max}` // Adjusted the message to be more meaningful
-    };
+const app = express()
+const port = 9500
 
-    return response;
-};
+app.get('/check', (req:any, res:any) => {
+    console.log(`server start ${port}`)
+    res.send('server began on AWS Lambda');
+});
+
+export const handler = serverless(app);
