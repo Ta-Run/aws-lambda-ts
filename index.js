@@ -28,7 +28,7 @@ const Product = mongoose.models.Product || mongoose.model('Product', productSche
 // }
 
 export const handler = async function (event, context) {
-  console.log('events console======',event)
+  console.log('events console======',event.requestContext)
   context.callbackWaitsForEmptyEventLoop = false;
 
   if (conn == null) {
