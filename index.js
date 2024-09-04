@@ -4,7 +4,7 @@ let conn = null;
 
 const uri = 'mongodb+srv://tarunsharma11091999:wABPUZltxCpzKeQ6@cluster0.1driiqd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
-exports.handler = async function(event, context) {
+export const handler = async function(event, context) {
   context.callbackWaitsForEmptyEventLoop = false;
 
   if (conn == null) {
