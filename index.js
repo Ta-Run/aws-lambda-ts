@@ -17,6 +17,16 @@ const productSchema = new mongoose.Schema({
 // Check if the model is already defined to avoid redefining it
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
 
+// const getProductDetails = async()=>{
+
+//   const response ={
+//     statusCode:404,
+//     body:JSON.stringify('invalid request')
+//   }
+
+//   return response 
+// }
+
 export const handler = async function (event, context) {
   context.callbackWaitsForEmptyEventLoop = false;
 
@@ -30,6 +40,23 @@ export const handler = async function (event, context) {
   }
 
   try {
+
+    var response;
+    if (event.path === 'api/getProducts') {
+      const getDetails = await Product.find();
+
+      response = {
+        statusCode: 200,
+        body: getDetails
+      }
+    }
+
+    if (event.path !== 'api/getProducts') {
+      response = {
+        statusCode: 404,
+        body: JSON.stringify('invalid request')
+      }
+    }
     const postData = await Product.create({
       name: "samsung",
       category: "mobile",
@@ -40,15 +67,8 @@ export const handler = async function (event, context) {
       os: "android-os"
     });
 
-    const getDetails = await Product.find();
+    return response
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ 
-        message: 'Connected successfully', 
-        getDetailsData : getDetails
-      }),
-    };
 
   } catch (error) {
     console.error("Error inserting data:", error);
