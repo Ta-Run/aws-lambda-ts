@@ -4,6 +4,19 @@ let conn = null;
 
 const uri = 'mongodb+srv://tarunsharma11091999:wABPUZltxCpzKeQ6@cluster0.1driiqd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
+const productSchema = new mongoose.Schema({
+  name: { type: String },
+  category: { type: String },
+  model: { type: String },
+  price: { type: String },
+  description: { type: String },
+  color: { type: String },
+  os: { type: String }
+});
+
+// Check if the model is already defined to avoid redefining it
+const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
+
 export const handler = async function (event, context) {
   context.callbackWaitsForEmptyEventLoop = false;
 
@@ -16,38 +29,25 @@ export const handler = async function (event, context) {
     console.log("MongoDB connected successfully");
   }
 
-  const productSchema = new mongoose.Schema({
-    name: { type: String },
-    category: { type: String },
-    model: { type: String },
-    price: { type: String },
-    description: { type: String },
-    color: { type: String },
-    os: { type: String }
-  });
-
-  // Ensure the collection name is explicit if you want a specific one
-  const Product = mongoose.model('Product', productSchema);
-
   try {
-    // const postData = await Product.create({
-    //   name: "samsung",
-    //   category: "mobile",
-    //   model: "2012",
-    //   price: "5000",
-    //   description: "lightweight slim",
-    //   color: "black",
-    //   os: "android-os"
-    // });
+    const postData = await Product.create({
+      name: "samsung",
+      category: "mobile",
+      model: "2012",
+      price: "5000",
+      description: "lightweight slim",
+      color: "black",
+      os: "android-os"
+    });
 
-     const getDetails = await Product.find();
+    const getDetails = await Product.find();
 
     return {
       statusCode: 200,
       body: JSON.stringify({ 
         message: 'Connected successfully', 
         getDetailsData : getDetails
-       }),
+      }),
     };
 
   } catch (error) {
