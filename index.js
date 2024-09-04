@@ -28,6 +28,7 @@ const Product = mongoose.models.Product || mongoose.model('Product', productSche
 // }
 
 export const handler = async function (event, context) {
+  console.log('events',event)
   context.callbackWaitsForEmptyEventLoop = false;
 
   if (conn == null) {
@@ -57,18 +58,25 @@ export const handler = async function (event, context) {
         body: JSON.stringify('invalid request')
       }
     }
-    const postData = await Product.create({
-      name: "samsung",
-      category: "mobile",
-      model: "2012",
-      price: "5000",
-      description: "lightweight slim",
-      color: "black",
-      os: "android-os"
-    });
 
+    if (event.path === 'api/postProducts') {
+      const postData = await Product.create({
+        name: "samsung",
+        category: "mobile",
+        model: "2012",
+        price: "5000",
+        description: "lightweight slim",
+        color: "black",
+        os: "android-os"
+      });
+
+      response = {
+        statusCode: 200,
+        body: postData
+      }
+    }
+    
     return response
-
 
   } catch (error) {
     console.error("Error inserting data:", error);
