@@ -20,7 +20,7 @@ export const handler = async function(event, context) {
 
   const response = {
     statusCode: 200,
-    body: JSON.stringify(doc),
+    body: JSON.stringify('connect susscfullu'),
   };
 
   return response;
