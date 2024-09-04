@@ -43,7 +43,7 @@ export const handler = async function (event, context) {
   try {
 
     var response;
-    if (event.path === '/getProducts') {
+    if (event.requestContext.path === '/getProducts') {
       const getDetails = await Product.find();
 
       response = {
@@ -52,14 +52,14 @@ export const handler = async function (event, context) {
       }
     }
 
-    if (event.path !== '/getProducts') {
+    if (event.requestContext.path !== '/getProducts') {
       response = {
         statusCode: 404,
         body: JSON.stringify('invalid request')
       }
     }
 
-    if (event.path === 'api/postProducts') {
+    if (event.requestContext.path === 'api/postProducts') {
       const postData = await Product.create({
         name: "samsung",
         category: "mobile",
