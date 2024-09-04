@@ -30,15 +30,15 @@ export const handler = async function (event, context) {
   const Product = mongoose.model('Product', productSchema);
 
   try {
-    const postData = await Product.create({
-      name: "samsung",
-      category: "mobile",
-      model: "2012",
-      price: "5000",
-      description: "lightweight slim",
-      color: "black",
-      os: "android-os"
-    });
+    // const postData = await Product.create({
+    //   name: "samsung",
+    //   category: "mobile",
+    //   model: "2012",
+    //   price: "5000",
+    //   description: "lightweight slim",
+    //   color: "black",
+    //   os: "android-os"
+    // });
 
      const getDetails = await Product.find();
 
@@ -46,7 +46,6 @@ export const handler = async function (event, context) {
       statusCode: 200,
       body: JSON.stringify({ 
         message: 'Connected successfully', 
-        data: postData,
         getDetailsData : getDetails
        }),
     };
