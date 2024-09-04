@@ -28,7 +28,7 @@ const Product = mongoose.models.Product || mongoose.model('Product', productSche
 // }
 
 export const handler = async function (event, context) {
-  console.log('events',event)
+  console.log('events console======',event)
   context.callbackWaitsForEmptyEventLoop = false;
 
   if (conn == null) {
@@ -43,7 +43,7 @@ export const handler = async function (event, context) {
   try {
 
     var response;
-    if (event.requestContext.path === '/getProducts') {
+    if (event.requestContext.http.path === '/getProducts') {
       const getDetails = await Product.find();
 
       response = {
@@ -52,7 +52,7 @@ export const handler = async function (event, context) {
       }
     }
 
-    if (event.requestContext.path !== '/getProducts') {
+    if (event.requestContext.http.path !== '/getProducts') {
       response = {
         statusCode: 404,
         body: JSON.stringify('invalid request')
