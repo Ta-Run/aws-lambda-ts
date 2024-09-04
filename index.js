@@ -43,7 +43,7 @@ export const handler = async function (event, context) {
   try {
 
     var response;
-    if (event.path === 'api/getProducts') {
+    if (event.path === '/getProducts') {
       const getDetails = await Product.find();
 
       response = {
@@ -52,7 +52,7 @@ export const handler = async function (event, context) {
       }
     }
 
-    if (event.path !== 'api/getProducts') {
+    if (event.path !== '/getProducts') {
       response = {
         statusCode: 404,
         body: JSON.stringify('invalid request')
