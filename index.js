@@ -12,11 +12,11 @@ export const handler = async function(event, context) {
     await conn;
   }
 
-  // Define your model only if it's not already defined
-  const M = mongoose.models.Test || mongoose.model('Test', new mongoose.Schema({ name: String }));
+  // // Define your model only if it's not already defined
+  // const M = mongoose.models.Test || mongoose.model('Test', new mongoose.Schema({ name: String }));
 
-  const doc = await M.create({name:'ram'});
-  console.log(doc);
+  // const doc = await M.create({name:'ram'});
+  // console.log(doc);
 
   const response = {
     statusCode: 200,
