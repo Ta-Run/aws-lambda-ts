@@ -37,5 +37,8 @@ exports.handler = async function(event, context) {
   const doc = await M.findOne();
   console.log(doc);
 
-  return doc;
+  return {
+    status:200,
+    body:JSON.stringify('connect with mongodb')
+  };
 };
