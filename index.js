@@ -18,8 +18,10 @@ export const handler = async function(event, context) {
   const doc = await M.create({name:'ram'});
   console.log(doc);
 
-  return {
+  const response = {
     statusCode: 200,
-    body: JSON.stringify('Connected to MongoDB'),
+    body: JSON.stringify(doc),
   };
+
+  return response;
 };
