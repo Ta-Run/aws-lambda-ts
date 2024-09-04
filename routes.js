@@ -1,7 +1,13 @@
-import { postProductDeatails } from "./controller.js"
+import { postProductDeatails } from "./controller.js";
 
-const productsdb = async(req,res)=>{
-    postProductDeatails (req,res)
-}
+const productsdb = async (body) => {
+  try {
+    const result = await postProductDeatails(body);
+    return result;
+  } catch (error) {
+    console.error("Error in productsdb", error);
+    throw error;
+  }
+};
 
-export {productsdb}
+export { productsdb };

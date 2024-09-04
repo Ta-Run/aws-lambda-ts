@@ -1,10 +1,13 @@
+import { postProductDeatails } from "./controller.js";
 
-import ProductsSchema from './productSchema.js'
+const productsdb = async (body) => {
+  try {
+    const result = await postProductDeatails(body);
+    return result;
+  } catch (error) {
+    console.error("Error in productsdb", error);
+    throw error;
+  }
+};
 
-const postProductDeatails =async (body)=>{
-    const data = await ProductsSchema.create(body)
-
-    data.save()
-}
-
-export {postProductDeatails}
+export { productsdb };
