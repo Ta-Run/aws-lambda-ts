@@ -17,25 +17,12 @@ const productSchema = new mongoose.Schema({
 // Check if the model is already defined to avoid redefining it
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
 
-// const getProductDetails = async()=>{
-
-//   const response ={
-//     statusCode:404,
-//     body:JSON.stringify('invalid request')
-//   }
-
-//   return response 
-// }
-
 export const handler = async function (event, context) {
   console.log('events console======',event.requestContext)
   context.callbackWaitsForEmptyEventLoop = false;
 
   if (conn == null) {
-    conn = mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    conn = mongoose.connect(uri);
     await conn;
     console.log("MongoDB connected successfully");
   }
@@ -45,6 +32,8 @@ export const handler = async function (event, context) {
     var response;
     if (event.requestContext.http.path === '/getProducts') {
       const getDetails = await Product.find();
+
+      console.log(getDetails,'letsCheck routs')
 
       response = {
         statusCode: 200,
