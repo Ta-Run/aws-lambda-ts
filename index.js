@@ -40,9 +40,15 @@ export const handler = async function (event, context) {
       os: "android-os"
     });
 
+     const getDetails = await Product.find();
+
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Connected successfully', data: postData }),
+      body: JSON.stringify({ 
+        message: 'Connected successfully', 
+        data: postData,
+        getDetailsData : getDetails
+       }),
     };
 
   } catch (error) {
