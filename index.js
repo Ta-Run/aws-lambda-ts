@@ -8,54 +8,48 @@ export const handler = async function (event, context) {
   context.callbackWaitsForEmptyEventLoop = false;
 
   if (conn == null) {
-    conn = mongoose.connect(uri);
+    conn = mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     await conn;
+    console.log("MongoDB connected successfully");
   }
 
-  // // Define your model only if it's not already defined
-  // const M = mongoose.models.Test || mongoose.model('Test', new mongoose.Schema({ name: String }));
+  const productSchema = new mongoose.Schema({
+    name: { type: String },
+    category: { type: String },
+    model: { type: String },
+    price: { type: String },
+    description: { type: String },
+    color: { type: String },
+    os: { type: String }
+  });
 
-  const productModel = new mongoose.Schema({
-    name: {
-      type: String
-    },
-    category: {
-      type: String
-    },
-    model: {
-      type: String
-    },
-    price: {
-      type: String
-    },
-    description: {
-      type: String
-    },
-    color: {
-      type: String
-    },
-    os: {
-      type: String
-    }
-  })
-  
-  const product_db = mongoose.model('productModel',productModel)
-   
-  const postData = await product_db.create({
-    name:"samsung",
-    category:"mobile",
-    model:"2012",
-    price:"5000",
-    description:"light wegiht slim",
-    color:"black",
-    os:"andriod-os"
-  })
+  // Ensure the collection name is explicit if you want a specific one
+  const Product = mongoose.model('Product', productSchema);
 
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify('connect susscfullu'),
-    result:postData
-  };
+  try {
+    const postData = await Product.create({
+      name: "samsung",
+      category: "mobile",
+      model: "2012",
+      price: "5000",
+      description: "lightweight slim",
+      color: "black",
+      os: "android-os"
+    });
 
-  return response;
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: 'Connected successfully', data: postData }),
+    };
+
+  } catch (error) {
+    console.error("Error inserting data:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: 'Failed to insert data', error: error.message }),
+    };
+  }
 };
