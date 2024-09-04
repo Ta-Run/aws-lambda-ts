@@ -8,12 +8,7 @@ exports.handler = async function(event, context) {
   context.callbackWaitsForEmptyEventLoop = false;
 
   if (conn == null) {
-    conn = mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      bufferCommands: false,
-      serverSelectionTimeoutMS: 5000
-    });
+    conn = mongoose.connect(uri);
     await conn;
   }
 
