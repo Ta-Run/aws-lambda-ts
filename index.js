@@ -1,5 +1,4 @@
 import { MongoClient } from "mongodb";
-  console.log('mongoclient',MongoClient)
 
 const MONGODB_URI =
   "mongodb+srv://tsharma:NLX8qfgpL1EzlJlo@cluster0.akmqi8m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
