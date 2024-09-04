@@ -20,7 +20,7 @@ exports.handler = async function(event, context) {
   // Define your model only if it's not already defined
   const M = mongoose.models.Test || mongoose.model('Test', new mongoose.Schema({ name: String }));
 
-  const doc = await M.create({'name':'ram'});
+  const doc = await M.create({name:'ram'});
   console.log(doc);
 
   return {
