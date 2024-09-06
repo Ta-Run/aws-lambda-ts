@@ -38,7 +38,7 @@ export const handler = async function (event, context) {
 
       response = {
         statusCode: 200,
-        body: {...getDetails}
+        body: getDetails
       }
     }
 
@@ -50,12 +50,19 @@ export const handler = async function (event, context) {
     }
 
     if (event.requestContext.http.path === '/addProduct') {
-      console.log('post api is work')
-
-      console.log('post api body',event.body);
-      const bodyData = JSON.stringify(event.body)
-      console.log('add product body',bodyData)
-      const postData = await Product.create(bodyData);
+     
+      console.log('post api data',event.body)
+      console.log('post api body',event.body.name);
+      
+      const postData = await Product.create({
+        name: event.body.name,
+        category: event.body.category,
+        model: event.body.model,
+        price: event.body.price,
+        description: event.body.description,
+        color:event.body.color,
+        os: event.body.os
+    });
       response = {
         statusCode: 200,
         body: postData
