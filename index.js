@@ -18,8 +18,7 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
 
 export const handler = async function (event, context) {
-  console.log('check all the routess ======',event.body)
-  console.log('events console======',event.requestContext)
+
   context.callbackWaitsForEmptyEventLoop = false;
 
   if (conn == null) {
@@ -33,12 +32,9 @@ export const handler = async function (event, context) {
     var response;
     if (event.requestContext.http.path === '/getProducts') {
       const getDetails = await Product.find();
-
-      console.log(getDetails,'letsCheck routs')
-
       response = {
         statusCode: 200,
-        body: getDetails
+        body: JSON.stringify(getDetails)0
       }
     }
 
@@ -50,22 +46,19 @@ export const handler = async function (event, context) {
     }
 
     if (event.requestContext.http.path === '/addProduct') {
-     
-      console.log('post api data',event.body)
-      console.log('post api body',event.body.name);
-      
+      const bodyData = JSON.parse(event.body);
       const postData = await Product.create({
-        name: event.body.name,
-        category: event.body.category,
-        model: event.body.model,
-        price: event.body.price,
-        description: event.body.description,
-        color:event.body.color,
-        os: event.body.os
+        name: bodyData.name,
+        category: bodyData.category,
+        model: bodyData.model,
+        price: bodyData.price,
+        description: bodyData.description,
+        color: bodyData.color,
+        os: bodyData.os,
     });
       response = {
         statusCode: 200,
-        body: postData
+        body: JSON.stringify(postData),
       }
     }
     
