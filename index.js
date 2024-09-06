@@ -54,17 +54,8 @@ export const handler = async function (event, context) {
 
       console.log('post api body',event.body);
       const bodyData = JSON.stringify(event.body)
-      console.log('add product body',body)
-      const postData = await Product.create({
-        name: "samsung",
-        category: "mobile",
-        model: "2012",
-        price: "5000",
-        description: "lightweight slim",
-        color: "black",
-        os: "android-os"
-      });
-
+      console.log('add product body',bodyData)
+      const postData = await Product.create(bodyData);
       response = {
         statusCode: 200,
         body: postData
