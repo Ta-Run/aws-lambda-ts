@@ -34,7 +34,7 @@ export const handler = async function (event, context) {
       const getDetails = await Product.find();
       response = {
         statusCode: 200,
-        body: JSON.stringify(getDetails)0
+        body: JSON.stringify(getDetails)
       }
     }
 
