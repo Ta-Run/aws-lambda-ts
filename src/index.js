@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 let conn = null;
 
@@ -14,10 +14,10 @@ const productSchema = new mongoose.Schema({
   os: { type: String }
 });
 
-// Check if the model is already defined to avoid redefining it
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
 
-export const handler = async function (event, context) {
+
+module.exports.handler  = async function (event, context) {
 
   context.callbackWaitsForEmptyEventLoop = false;
 

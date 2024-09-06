@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A simple SAM template for Lambda and API Gateway
+
+Resources:
+  MyLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: productsdb
+      Handler: index.handler 
+      Runtime: nodejs20.x 
+      CodeUri: src/
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /getProducts  
+            Method: GET
+
+Outputs:
+  MyLambdaFunctionArn:
+    Description: Lambda Function ARN
+    Value: !GetAtt MyLambdaFunction.Arn
