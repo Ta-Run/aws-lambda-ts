@@ -18,6 +18,7 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
 
 export const handler = async function (event, context) {
+  console.log('check all the routess ======',event)
   console.log('events console======',event.requestContext)
   context.callbackWaitsForEmptyEventLoop = false;
 
@@ -37,7 +38,7 @@ export const handler = async function (event, context) {
 
       response = {
         statusCode: 200,
-        body: getDetails
+        body: {...getDetails}
       }
     }
 
@@ -48,7 +49,8 @@ export const handler = async function (event, context) {
       }
     }
 
-    if (event.requestContext.path === 'api/postProducts') {
+    if (event.requestContext.http.path === '/addProduct') {
+      console.log('post api is work')
       const postData = await Product.create({
         name: "samsung",
         category: "mobile",

@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "msedge",
+            "name": "https://7czje40kh6.execute-api.us-east-1.amazonaws.com/getProducts",
+            "request": "launch",
+            "url": "https://7czje40kh6.execute-api.us-east-1.amazonaws.com/getProducts"
+        }
+    ]
+}
