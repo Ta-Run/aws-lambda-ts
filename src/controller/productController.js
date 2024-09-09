@@ -33,9 +33,10 @@ export const addProduct = async (event) => {
 
 export const updateProduct = async (event) => {
     try {
-        console.log('update event ',event)
+        console.log(event['queryStringParameters'])
+        console.log(event.queryStringParameters._id,'parmas iddd')
         const bodyData = JSON.parse(event.body);
-        const updatedProduct = await Product.findOneAndUpdate({ _id: bodyData.id }, bodyData, { new: true });
+        const updatedProduct = await Product.findOneAndUpdate({ _id: event.queryStringParameters._id }, bodyData, { new: true });
         return {
             statusCode: 200,
             body: JSON.stringify(updatedProduct)
