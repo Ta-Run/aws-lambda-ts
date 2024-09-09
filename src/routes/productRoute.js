@@ -1,4 +1,4 @@
-import { getDetails, addProduct, updateProduct, deleteProduct } from "../controllers/productController.js";
+import { getDetails, addProduct, updateProduct, deleteProduct } from "../controller/productController.js";
 
 export const routeHandler = async (event) => {
     const { http } = event.requestContext;
