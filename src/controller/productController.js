@@ -33,6 +33,7 @@ export const addProduct = async (event) => {
 
 export const updateProduct = async (event) => {
     try {
+        console.log('update event ',event)
         const bodyData = JSON.parse(event.body);
         const updatedProduct = await Product.findOneAndUpdate({ _id: bodyData.id }, bodyData, { new: true });
         return {
@@ -49,6 +50,7 @@ export const updateProduct = async (event) => {
 
 export const deleteProduct = async (event) => {
     try {
+        console.log('delete event ',event)
         const { id } = JSON.parse(event.body);
         await Product.findByIdAndDelete(id);
         return {

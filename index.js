@@ -7,10 +7,4 @@ export const handler = async (event, context) => {
   await connectToDatabase();
 
   return await routeHandler(event);
-  // const response = {
-  //   status:200,
-  //   body:JSON.stringify('it is work')
-
-  // } 
-  // return  response 
 };
