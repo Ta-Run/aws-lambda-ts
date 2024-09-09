@@ -51,12 +51,26 @@ export const updateProduct = async (event) => {
 
 export const deleteProduct = async (event) => {
     try {
-        console.log('delete event ',event)
-   
+
         await Product.findByIdAndDelete({_id:event.queryStringParameters._id});
         return {
             statusCode: 200,
             body: JSON.stringify({ message: 'Product deleted successfully' })
+        };
+    } catch (error) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ message: 'Error deleting product', error: error.message })
+        };
+    }
+};
+
+export const getProductById = async (event) => {
+    try {
+        const data = await Product.findById({_id:event.queryStringParameters._id});
+        return {
+            statusCode: 200,
+            body: JSON.stringify(data)
         };
     } catch (error) {
         return {
