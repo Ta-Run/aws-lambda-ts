@@ -67,10 +67,10 @@ Below are the available API endpoints:
 
 You may need to set the following environment variables in your AWS Lambda function:
 
-- `DB_HOST`: The database host.
-- `DB_USER`: Database username.
-- `DB_PASSWORD`: Database password.
-- `DB_NAME`: The database name for products.
+- `DB_HOST`@cluster0.1driiqd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0:
+- `DB_USER`:tarunsharma11091999.
+- `DB_PASSWORD`: wABPUZltxCpzKeQ6.
+- `DB_NAME`: productsdb.
 
 ### CI/CD with GitHub Actions
 
@@ -96,12 +96,12 @@ The GitHub Actions workflow automates the following tasks:
   
   **Get Products**:
   ```bash
-  curl -X GET https://{api-gateway-url}/getProducts
+  curl -X GEThttps://7czje40kh6.execute-api.us-east-1.amazonaws.com/getProducts
   ```
 
   **Add Product**:
   ```bash
-  curl -X POST https://{api-gateway-url}/addProducts \
+  curl -X POST https://https://7czje40kh6.execute-api.us-east-1.amazonaws.com/addProducts
   -H 'Content-Type: application/json' \
   -d '{"name": "Product Name", "price": 10.99}'
   ```
@@ -109,7 +109,3 @@ The GitHub Actions workflow automates the following tasks:
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-Feel free to replace the placeholders (like `{api-gateway-url}`) with your actual values and update any other sections according to your project specifics.
