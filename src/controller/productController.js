@@ -52,8 +52,8 @@ export const updateProduct = async (event) => {
 export const deleteProduct = async (event) => {
     try {
         console.log('delete event ',event)
-        const { id } = JSON.parse(event.body);
-        await Product.findByIdAndDelete(id);
+   
+        await Product.findByIdAndDelete({_id:event.queryStringParameters._id});
         return {
             statusCode: 200,
             body: JSON.stringify({ message: 'Product deleted successfully' })
