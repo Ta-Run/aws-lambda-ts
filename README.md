@@ -48,8 +48,8 @@ Below are the available API endpoints:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/Ta-Run/aws-lambda-ts.git
+   cd aws-lambda-ts
    ```
 
 2. **Install dependencies**:
@@ -57,10 +57,7 @@ Below are the available API endpoints:
    npm install
    ```
 
-3. **Configure AWS Credentials**:
-   Ensure your AWS CLI is configured with credentials that have access to Lambda, API Gateway, and CloudWatch.
-
-4. **Deploy to AWS Lambda**:
+3. **Deploy to AWS Lambda**:
    You can deploy the Lambda function manually or use the GitHub Actions CI/CD pipeline for deployment.
 
 ### Environment Variables
@@ -74,7 +71,7 @@ You may need to set the following environment variables in your AWS Lambda funct
 
 ### CI/CD with GitHub Actions
 
-This project uses GitHub Actions for continuous integration and deployment. The workflow file is located in `.github/workflows/deploy.yml` and is triggered on every push to the main branch.
+This project uses GitHub Actions for continuous integration and deployment. The workflow file is located in `.github/workflows/main.yml` and is triggered on every push to the main branch.
 
 The GitHub Actions workflow automates the following tasks:
 
