@@ -21,3 +21,8 @@ Outputs:
   MyLambdaFunctionArn:
     Description: Lambda Function ARN
     Value: !GetAtt MyLambdaFunction.Arn
+
+
+
+# command help to run jest file unit test in esm module type
+ # -->  node --experimental-vm-modules node_modules/jest/bin/jest.js
