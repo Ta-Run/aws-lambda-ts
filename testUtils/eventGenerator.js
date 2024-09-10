@@ -1,10 +1,9 @@
-export const APIGatewayRequest = (data) => {
-    return {
-      body: JSON.stringify(data),
-      httpMethod: 'GET',
-      path: '/product',
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
-  };
+export const APIGatewayRequest = (data) => ({
+  body: JSON.stringify(data),
+  requestContext: {
+    http: {
+      path: '/getProducts' // Or any path relevant to your function
+    }
+  },
+  // Other properties as required
+});

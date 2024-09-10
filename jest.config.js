@@ -4,6 +4,5 @@ export default {
     '^.+\\.jsx?$': 'babel-jest',
   },
   testEnvironment: 'node',
-  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   verbose: true,
 };
