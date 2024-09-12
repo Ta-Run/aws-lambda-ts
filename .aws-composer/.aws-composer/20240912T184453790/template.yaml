@@ -1,23 +1,19 @@
 Transform: AWS::Serverless-2016-10-31
 Resources:
-  productDb:
+  Function:
     Type: AWS::Serverless::Function
     Properties:
-      Description:
-        Fn::Sub:
+      Description: !Sub
         - Stack ${AWS::StackName} Function ${ResourceName}
-        - ResourceName: productDb
+        - ResourceName: Function
+      CodeUri: src/Function
+      Handler: index.handler
+      Runtime: nodejs20.x
       MemorySize: 3008
       Timeout: 30
       Tracing: Active
-      CodeUri: productDb
-      Runtime: nodejs20.x
-      Handler: index.handler
-    Metadata:
-      SamResourceId: productDb
-  productDbLogGroup:
+  FunctionLogGroup:
     Type: AWS::Logs::LogGroup
     DeletionPolicy: Retain
     Properties:
-      LogGroupName:
-        Fn::Sub: /aws/lambda/${productDb}
+      LogGroupName: !Sub /aws/lambda/${Function}

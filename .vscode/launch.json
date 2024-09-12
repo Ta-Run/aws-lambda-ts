@@ -1,24 +1,76 @@
 {
     "configurations": [
-        
-        
-    {
-        "type": "aws-sam",
-        "request": "direct-invoke",
-        "name": "Invoke Lambda with API Gateway",
-        "invokeTarget": {
-            "target": "api",
-            "templatePath": "${workspaceFolder}/template.yaml",
-            "logicalId": "MyLambdaFunction"
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "Invoke Lambda with API Gateway",
+            "invokeTarget": {
+                "target": "api",
+                "templatePath": "${workspaceFolder}/template.yaml",
+                "logicalId": "productDb"
+            },
+            "api": {
+                "path": "routes/productRoute",
+                "httpMethod": "get",
+                "payload": {
+                    "json": {}
+                }
+            }
         },
-        "api": {
-            "path": "/getProducts",
-            "httpMethod": "get",
-            "payload": {
-                "json": {}
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "Invoke Lambda",
+            "invokeTarget": {
+                "target": "template",
+                "templatePath": "${workspaceFolder}/template.yaml",
+                "logicalId": "productDb"
+            },
+            "lambda": {
+                "payload": {
+                    "json": {}
+                }
             }
         }
-    }
+       
+        // {
+        //     "type": "aws-sam",
+        //     "request": "direct-invoke",
+        //     "name": "Lambda local",
+        //     "invokeTarget": {
+        //         "target": "code",
+        //         "lambdaHandler": "index.handler",
+        //         "projectRoot": "${workspaceFolder}/src"
+        //     },
+        //     "lambda": {
+        //         "runtime": "nodejs20.x",
+        //         "payload": {
+        //             "json": {
+        //                 "name":"productLambda",
+        //                 "password":"product*123"
+        //             }
+        //         }
+        //     }
+        // },
+        
+        
+    // {
+    //     "type": "aws-sam",
+    //     "request": "direct-invoke",
+    //     "name": "Invoke Lambda with API Gateway",
+    //     "invokeTarget": {
+    //         "target": "api",
+    //         "templatePath": "${workspaceFolder}/template.yaml",
+    //         "logicalId": "MyLambdaFunction"
+    //     },
+    //     "api": {
+    //         "path": "/getProducts",
+    //         "httpMethod": "get",
+    //         "payload": {
+    //             "json": {}
+    //         }
+    //     }
+    // }
     ]
 } 
 

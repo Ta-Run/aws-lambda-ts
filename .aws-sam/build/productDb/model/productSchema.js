@@ -12,4 +12,4 @@ const productSchema = new Schema({
   os: { type: String }
 });
 
-exports.Product =  model('Product', productSchema);
+export const Product =  model('Product', productSchema);

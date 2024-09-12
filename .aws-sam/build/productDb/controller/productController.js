@@ -1,7 +1,7 @@
 
 const {Product} = require('../model/productSchema.js')
 
-exports.getDetails = async () => {
+export const getDetails = async () => {
     try {
         const products = await Product.find();
         return {
@@ -16,7 +16,7 @@ exports.getDetails = async () => {
     }
 };
 
-exports.addProduct = async (event) => {
+export const addProduct = async (event) => {
     try {
         const bodyData = JSON.parse(event.body);
         const newProduct = await Product.create(bodyData);
@@ -32,7 +32,7 @@ exports.addProduct = async (event) => {
     }
 };
 
-exports.updateProduct = async (event) => {
+export const updateProduct = async (event) => {
     try {
         console.log(event['queryStringParameters'])
         console.log(event.queryStringParameters._id,'parmas iddd')
@@ -50,7 +50,7 @@ exports.updateProduct = async (event) => {
     }
 };
 
-exports.deleteProduct = async (event) => {
+export const deleteProduct = async (event) => {
     try {
 
         await Product.findByIdAndDelete({_id:event.queryStringParameters._id});
@@ -66,7 +66,7 @@ exports.deleteProduct = async (event) => {
     }
 };
 
-exports.getProductById = async (event) => {
+export const getProductById = async (event) => {
     try {
         const data = await Product.findById({_id:event.queryStringParameters._id});
         return {
